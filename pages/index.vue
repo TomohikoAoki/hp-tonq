@@ -7,6 +7,9 @@
 <script>
 
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  layout() {
+    return 'MainLayouts'
+  }
 }
 </script>
