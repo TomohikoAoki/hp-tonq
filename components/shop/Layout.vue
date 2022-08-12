@@ -56,71 +56,7 @@
       </ul>
     </nav>
     <div class="shop-info">
-      <div class="shop-info__list">
-        <dl class="slist">
-          <div class="slist__row">
-            <dt>店名</dt>
-            <dd id="shop_name">とんかつとんＱ つくば本店</dd>
-          </div>
-          <div class="slist__row">
-            <dt>TEL</dt>
-            <dd><a href="tel:0298524509">029-852-4509</a></dd>
-          </div>
-          <div class="slist__row">
-            <dt>住所</dt>
-            <dd>茨城県つくば市東新井13－12</dd>
-          </div>
-          <div class="slist__row">
-            <dt>地図</dt>
-            <dd>
-              <iframe
-                title="地図"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.6760462389316!2d140.10851385168883!3d36.07700491567257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220c861812a0d7%3A0x20caf834271cd1af!2z44Go44KT44GL44Gk44Go44KTUeOBpOOBj-OBsOacrOW6lw!5e0!3m2!1sja!2sjp!4v1487921286372"
-                frameborder="0"
-                style="border: 0"
-                allowfullscreen="true"
-                aria-hidden="false"
-                tabindex="0"
-                id="map"
-                height="450"
-              ></iframe>
-            </dd>
-          </div>
-          <div class="slist__row">
-            <dt>交通手段</dt>
-            <dd>TXつくば、つくば駅より徒歩12分</dd>
-          </div>
-          <div class="slist__row">
-            <dt>営業時間</dt>
-            <dd>
-              【平日】<br />11:00 &#126; 21:00&nbsp;(L.O.20:30)<br />
-              【土日祝】 <br />11:00 &#126; 22:00&nbsp;(L.O.21:30)<br />
-              【ランチタイム※平日・土曜】 <br />
-              11:00 &#126; 15:00
-            </dd>
-          </div>
-          <div class="slist__row">
-            <dt>店休日</dt>
-            <dd>基本木曜日</dd>
-          </div>
-          <div class="slist__row">
-            <dt>支払方法</dt>
-            <dd>現金・クレジットカード・Paypay</dd>
-          </div>
-          <div class="slist__row">
-            <dt>席数</dt>
-            <dd>９１席（座敷席あり）</dd>
-          </div>
-          <div class="slist__row">
-            <dt>個室</dt>
-            <dd>なし</dd>
-          </div>
-          <div class="slist__row">
-            <dt>駐車場</dt>
-            <dd>有</dd>
-          </div>
-        </dl>
-      </div>
+      <Information :shopData="shopData"></Information>
       <nav class="shop-info__link">
         <div class="link-shop">
           <h3><span>その他の店舗</span></h3>
@@ -156,8 +92,9 @@
 
 <script>
 import Calendar from './Calendar.vue';
+import Information from './Info.vue'
 export default {
-    components: { Calendar }
+    components: { Calendar,Information }
 };
 
 </script>

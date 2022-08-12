@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .calendar-container {
-  max-width: 500px;
+  max-width: 700px;
   width: 90%;
   margin: 0 auto;
   border: 1px solid;
