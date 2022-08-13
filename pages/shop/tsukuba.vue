@@ -59,6 +59,7 @@ export default {
 .shop-bottom-layout {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   max-width: 1300px;
   width: 95%;
   margin: 0 auto;
@@ -77,6 +78,10 @@ export default {
   }
   .link {
     width: 350px;
+    @media screen and (max-width:1000px) {
+      width: 90%;
+      margin: 30px auto;
+    }
   }
 }
 </style>

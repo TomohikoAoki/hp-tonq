@@ -1,23 +1,5 @@
 <template>
   <div>
-    <div id="shop-image-box">
-      <!--<picture>
-        <source media="(min-width: 900px)" srcset="imgae/photo_tsukubal.jpg" />
-        <source media="(min-width: 550px)" srcset="imgae/photo_tsukubam.jpg" />
-        <source media="(min-width: 300px)" srcset="imgae/photo_tsukubas.jpg" />
-        <img
-          src="imgae/photo_tsukubal.jpg"
-          alt="とんQつくば本店"
-          class="shop-image"
-        />
-      </picture>-->
-    </div>
-    <div class="shop-top">
-      <h1 class="shop-top__title"><span>とんかつとんＱ</span> つくば本店</h1>
-      <p class="shop-top__text">
-        とんかつとんQつくば本店は、平成２３年に農林水産大臣賞を受賞した<em>「やまと豚」のとんかつを中心に、お膳の５品（とんかつ・キャベツ・ご飯・味噌汁・お新香）にこだわるとんかつ専門店</em>。つくば万博が開催される３年前の昭和５８年に<em>茨城県つくば市</em>で創業して以来、こだわりの料理と心からの接客で、地域で１番のお店を目指しております。
-      </p>
-    </div>
     <div class="sns-area">
       <h2 class="sns-title"><span>店舗SNS</span></h2>
       <nav class="sns">
@@ -39,54 +21,6 @@
       </nav>
     </div>
     <shopWrapCalendar></shopWrapCalendar>
-    <nav class="shop-nav">
-      <ul class="shop-nav__btn">
-        <li id="smn_menu">
-          <a class="lazyload">とんかつ御品書</a>
-        </li>
-        <li id="smn_lunch">
-          <a class="lazyload">ランチメニュー</a>
-        </li>
-        <li id="smn_season">
-          <a class="lazyload">季節のフェアメニュー</a>
-        </li>
-        <li id="smn_kodawari">
-          <a class="lazyload">とんＱのこだわり</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="shop-info">
-      <Information :shopData="shopData"></Information>
-      <nav class="shop-info__link">
-        <div class="link-shop">
-          <h3><span>その他の店舗</span></h3>
-          <h4>茨城県</h4>
-          <ul>
-            <li><a>イーアスつくば店</a></li>
-            <li><a>守谷ふれあい店</a></li>
-            <li><a>水戸千波店</a></li>
-          </ul>
-          <h4>千葉県</h4>
-          <ul>
-            <li>
-              <a href="narita.html"
-                >成田<span class="sp_block">ニュータウン店</span></a
-              >
-            </li>
-            <li>
-              <a href="kashiwa.html"
-                >柏高島屋<span class="sp_block">ｽﾃｰｼｮﾝﾓｰﾙ店</span></a
-              >
-            </li>
-          </ul>
-          <h4>埼玉県</h4>
-          <ul>
-            <li><a href="kasukabe.html">春日部店</a></li>
-            <li><a href="fujimino.html">ふじみ野店</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
   </div>
 </template>
 

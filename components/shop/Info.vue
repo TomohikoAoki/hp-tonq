@@ -134,7 +134,7 @@ export default {
             width: 40%;
             text-align: center;
             text-align-last: center;
-            font-size: 4vw;
+            font-size: 1em;
             border-radius: 100px;
             letter-spacing: 0.15em;
           }
@@ -151,7 +151,7 @@ export default {
           padding: 0;
           font-size: 1em;
           text-align: center;
-          font-size: 4.2vw;
+          font-size: 1.2em;
         }
         a {
           color: #3f3f3f;
