@@ -7,18 +7,18 @@
       </div>
       <div class="s-list__row">
         <dt><span>TEL</span></dt>
-        <dd>{{ shopData.telNum }}</dd>
+        <dd>{{ shopData.telephone }}</dd>
       </div>
       <div class="s-list__row">
         <dt><span>住所</span></dt>
-        <dd>{{ shopData.add }}</dd>
+        <dd>{{ generateAddress }}</dd>
       </div>
       <div class="s-list__row">
         <dt><span>マップ</span></dt>
         <dd>
           <iframe
             title="地図"
-            :src="generateMapSrc"
+            :src="shopData.map"
             frameborder="0"
             style="border: 0"
             allowfullscreen="true"
@@ -36,12 +36,30 @@
       <div class="s-list__row">
         <dt><span>営業時間</span></dt>
         <dd>
-          <span class="ib">【平日】</span
-          ><span class="ib">{{ shopData.open.weekday }}</span
-          ><br /><span class="ib">【土日祝】</span
-          ><span class="ib">{{ shopData.open.holiday }}</span
-          ><br /><span class="ib">【ランチタイム】</span
-          ><span class="ib">{{ shopData.open.lunchTime }}</span>
+          <!--平日土日祝営業時間が一緒の場合-->
+          <div v-if="shopData.open.weekday === shopData.open.holiday">
+            <p>{{ shopData.open.weekday }}</p>
+          </div>
+          <div v-else>
+            <!--平日一つの場合-->
+            <p class="time-title">【平日】</p>
+            <div v-if="typeof shopData.open.weekday === 'string'">
+              <p>{{ shopData.open.weekday }}</p>
+            </div>
+            <!--平日中休みがあるの場合-->
+            <div v-if="typeof shopData.open.weekday === 'object'">
+              <p>{{ shopData.open.weekday[0] }}</p>
+              <p>{{ shopData.open.weekday[1] }}</p>
+            </div>
+            <p class="time-title">【土日祝】</p>
+            <div>
+              <p>{{ shopData.open.holiday }}</p>
+            </div>
+          </div>
+          <p class="time-title">【ランチタイム】</p>
+          <div>
+            <p>{{ shopData.open.lunchTime }}</p>
+          </div>
         </dd>
       </div>
       <div class="s-list__row">
@@ -70,10 +88,19 @@
 
 <script>
 export default {
-  props: ["shopData"],
+  data() {
+    return {
+      shopData: this.$store.getters["shops/getShopData"](this.shopId),
+    };
+  },
+  props: ["shopId"],
   computed: {
-    generateMapSrc() {
-      return `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1${this.shopData.map}`;
+    generateAddress() {
+      const address = this.shopData.address;
+
+      return (
+        address.addressRegion + address.addressLocality + address.streetAddress
+      );
     },
   },
 };
@@ -152,6 +179,9 @@ export default {
           font-size: 1em;
           text-align: center;
           font-size: 1.2em;
+        }
+        .time-title {
+          padding-top: 0.5em;
         }
         a {
           color: #3f3f3f;

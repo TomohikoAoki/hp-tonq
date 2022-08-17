@@ -23,7 +23,7 @@ import {
 export default {
   methods: {
     closeModal() {
-      this.$store.dispatch('changeModalNav', false)
+      this.$store.dispatch('options/changeModalNav', false)
     }
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="calendar">
-    <div class="calendar-title">{{ year }}年{{ month + 1 }}月</div>
+    <div class="calendar-title"><span>{{ year }}</span>年<span>{{ month + 1 }}</span>月</div>
     <table class="calendar-table">
       <thead class="calendar-head">
         <tr>
@@ -29,7 +29,16 @@
         </tr>
       </tbody>
     </table>
-    <div class="calender__text"></div>
+    <div class="calendar__text">
+      <span class="close-day-title">店休日は</span>
+      <span
+        v-for="(day, index) in textCloseDays"
+        :key="index"
+        class="close-day-list"
+        ><span :class="{'dotted-first':index === 0}">・</span><span class="close-day">{{ day }}</span
+        >日</span
+      >
+    </div>
   </div>
 </template>
 
@@ -40,7 +49,18 @@ export default {
       calendars: null,
     };
   },
-  props: ["year", "month"],
+  props: ["year", "month", "shopData"],
+  computed: {
+    textCloseDays() {
+      const close = this.shopData.close.find(
+        (item) => item.month - 1 === this.month
+      );
+      if (close) {
+        return close.day;
+      }
+      return [];
+    },
+  },
   methods: {
     createCalendarBody() {
       const startDay = new Date(this.year, this.month, 1).getDay();
@@ -49,6 +69,9 @@ export default {
 
       let calendars = [];
       let textDate = 1;
+      const close = this.shopData.close.find(
+        (item) => item.month - 1 === this.month
+      );
 
       for (let week = 1; week <= weekNumber; week++) {
         let array = [];
@@ -59,17 +82,23 @@ export default {
           ) {
             array.push({
               date: null,
-              class: `day date-${this.year}-${this.month}-null`,
+              class: `day date-${this.year}-${this.month + 1}-null`,
             });
             continue;
           }
 
-          array.push({
+          let obj = {
             date: textDate,
-            class: `day date-${this.year}-${this.month}-${textDate}`,
-          });
-          textDate++;
+            class: `day date-${this.year}-${this.month + 1}-${textDate}`,
+          };
 
+          if (close) {
+            if (close.day.includes(textDate)) obj.class = obj.class + " close";
+          }
+
+          array.push(obj);
+
+          textDate++;
         }
 
         calendars.push(array);
@@ -79,18 +108,19 @@ export default {
     },
   },
   mounted() {
-    if (this.year && this.month) this.createCalendarBody();
+    if (this.year && this.month && this.shopData) this.createCalendarBody();
   },
   watch: {
     year() {
-      if (this.month && !this.calendars) {
+      if (this.month && !this.calendars && this.shopData)
         this.createCalendarBody();
-      }
     },
     month() {
-      if (this.year && !this.calendars) {
+      if (this.month && !this.calendars && this.shopData)
         this.createCalendarBody();
-      }
+    },
+    shopData() {
+      if (this.month && !this.calendars && this.year) this.createCalendarBody();
     },
   },
 };
@@ -99,12 +129,15 @@ export default {
 <style lang="scss" scoped>
 .calendar {
   width: 100%;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   .calendar-title {
     text-align: center;
     font-weight: bold;
-    padding: 1.5em 0 1.2em 0;
+    padding: 0em 0 0.7em 0;
     font-size: 1.3em;
+    span {
+      font-size: 1.2em;
+    }
   }
   .calendar-table {
     width: 80%;
@@ -132,11 +165,44 @@ export default {
         font-weight: bold;
         vertical-align: middle;
       }
+      .day.close {
+        background-color: #853007;
+        color: #fff;
+      }
+      .day.sunday.close {
+        background-color: #853007;
+        color: #fff;
+      }
       .day.sunday {
         background-color: #f0c187;
         color: #853007;
       }
     }
   }
+  .calendar__text {
+    text-align: center;
+    margin: 1em 0 0 0;
+    font-size: 1.2em;
+    @media screen and (max-width:600px) {
+      font-size: 1.0em;
+    }
+    .close-day-title {
+      display: inline-block;
+    }
+    .close-day-list {
+      font-weight: bold;
+      .close-day {
+        font-size: 1.2em;
+      }
+      .dotted-first {
+        display: none;
+      }
+    }
+  }
+}
+.date-2022-8-11,
+.date-2022-9-19,
+.date-2022-9-23 {
+  color: #853007;
 }
 </style>

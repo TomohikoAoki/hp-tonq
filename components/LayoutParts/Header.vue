@@ -66,12 +66,12 @@ import {mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      showNavFlag:'modalNavFlag'
+      showNavFlag:'options/modalNavFlag'
     })
   },
   methods: {
     showNav() {
-      this.$store.dispatch('changeModalNav', true)
+      this.$store.dispatch('options/changeModalNav', true)
     }
   }
 }

@@ -17,8 +17,8 @@ export default {
         link: [
             { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
             {
-                rel: "stylesheet",
                 href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+                rel: "stylesheet",
             },
         ],
     },
@@ -27,7 +27,7 @@ export default {
     css: ["~assets/css/destyle.css", "~assets/css/common.scss"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: '~/plugins/routerOption.js', ssr: false }],
+    plugins: [{ src: "~/plugins/routerOption.js", ssr: false }],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,

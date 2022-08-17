@@ -16,7 +16,7 @@
         />
         <img
           :src="generateImgURLLarge"
-          alt="とんQつくば本店"
+          :alt="`${shopData.name}イメージ`"
           class="shop-image"
         />
       </picture>
@@ -24,7 +24,7 @@
     <h1 class="shop-top__title">
       <span>とんかつとんＱ</span>{{ filterTitle }}
     </h1>
-    <p class="shop-top__text">{{ shopData.mainText }}</p>
+    <p class="shop-top__text">{{ shopData.description }}</p>
     <div class="shop-top__sns-area"></div>
   </div>
 </template>

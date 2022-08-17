@@ -1,5 +1,5 @@
 export default async({ app, store }) => {
     app.router.afterEach((to, from) => {
-        store.dispatch('changeModalNav', false)
+        store.dispatch('options/changeModalNav', false)
     })
 }

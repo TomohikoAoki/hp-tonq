@@ -25,17 +25,40 @@
     <div class="banner">
       <nav class="banner-link">
         <ul class="banner-link__list">
-          <li class="recruit"><a href=""><img src="~assets/image/shop/bnr-recruit.png"></a></li>
-          <li class="twitter"><a href=""><img src="~assets/image/shop/bnr-twitter.gif"></a></li>
-          <li class="insta"><a href=""><img src="~assets/image/shop/bnr-insta.gif"></a></li>
+          <li class="recruit">
+            <a href=""
+              ><img
+                src="~assets/image/shop/bnr-recruit.png"
+                alt="求人情報リンク"
+            /></a>
+          </li>
+          <li class="twitter" v-if="shopData.sns.twitter">
+            <a :href="shopData.sns.twitter"
+              ><img
+                src="~assets/image/shop/bnr-twitter.gif"
+                alt="ツイッターリンク"
+            /></a>
+          </li>
+          <li class="insta" v-if="shopData.sns.instagram">
+            <a :href="shopData.sns.instagram"
+              ><img
+                src="~assets/image/shop/bnr-insta.gif"
+                alt="インスタグラムリンク"
+            /></a>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<script>
+export default {
+  props: ["shopData"],
+};
+</script>
 
+<style scoped lang="scss">
 .link-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -49,10 +72,10 @@
   max-width: 400px;
   width: 100%;
   flex: 1;
-  @media screen and (max-width:900px) {
+  @media screen and (max-width: 900px) {
     margin-right: 20px;
   }
-  @media screen and (max-width:550px) {
+  @media screen and (max-width: 550px) {
     margin: 20px auto;
     width: 90%;
     min-width: 350px;
@@ -92,10 +115,10 @@
 }
 .banner {
   width: 350px;
-  @media screen and (max-width:900px) {
+  @media screen and (max-width: 900px) {
     width: 40%;
   }
-  @media screen and (max-width:550px) {
+  @media screen and (max-width: 550px) {
     width: 350px;
     margin: 0 auto;
   }
@@ -109,7 +132,7 @@
         border: 1px solid #333;
         margin: 15px 0;
         &:hover {
-          filter:drop-shadow(2px 2px 1px #666) brightness(110%);
+          filter: drop-shadow(2px 2px 1px #666) brightness(110%);
         }
         &.recruit {
           border: 1px solid #333;
