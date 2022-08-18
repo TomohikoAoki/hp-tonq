@@ -5,20 +5,20 @@
       <nav class="link-nav">
         <h3 class="link-nav__title">茨城県</h3>
         <ul class="nav">
-          <li><nuxt-link to="">つくば本店</nuxt-link></li>
-          <li><nuxt-link to="">イーアスつくば店</nuxt-link></li>
-          <li><nuxt-link to="">水戸千波店</nuxt-link></li>
-          <li><nuxt-link to="">守谷ふれあい店</nuxt-link></li>
+          <li><nuxt-link to="/shop/tsukuba">つくば本店</nuxt-link></li>
+          <li><nuxt-link to="/shop/iias">イーアスつくば店</nuxt-link></li>
+          <li><nuxt-link to="/shop/senba">水戸千波店</nuxt-link></li>
+          <li><nuxt-link to="/shop/moriya">守谷ふれあい店</nuxt-link></li>
         </ul>
         <h3 class="link-nav__title">埼玉県</h3>
         <ul class="nav">
-          <li><nuxt-link to="">春日部店</nuxt-link></li>
-          <li><nuxt-link to="">ふじみ野店</nuxt-link></li>
+          <li><nuxt-link to="/shop/kasukabe">春日部店</nuxt-link></li>
+          <li><nuxt-link to="/shop/fujimino">ふじみ野店</nuxt-link></li>
         </ul>
         <h3 class="link-nav__title">千葉県</h3>
         <ul class="nav">
-          <li><nuxt-link to="">成田ニュータウン店</nuxt-link></li>
-          <li><nuxt-link to="">柏高島屋店</nuxt-link></li>
+          <li><nuxt-link to="/shop/narita">成田ニュータウン店</nuxt-link></li>
+          <li><nuxt-link to="/shop/kashiwa">柏高島屋店</nuxt-link></li>
         </ul>
       </nav>
     </div>

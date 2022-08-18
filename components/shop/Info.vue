@@ -88,16 +88,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      shopData: this.$store.getters["shops/getShopData"](this.shopId),
-    };
-  },
-  props: ["shopId"],
+  props: ["shopData"],
   computed: {
     generateAddress() {
       const address = this.shopData.address;
-
       return (
         address.addressRegion + address.addressLocality + address.streetAddress
       );

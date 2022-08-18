@@ -22,7 +22,7 @@
             >
           </li>
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/iias"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav07.webp" />
               </div>
@@ -34,7 +34,7 @@
             >
           </li>
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/senba"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav02.webp" />
               </div>
@@ -46,7 +46,7 @@
             >
           </li>
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/moriya"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav03.webp" />
               </div>
@@ -63,7 +63,7 @@
         <h2 class="shop-nav__title">埼玉県</h2>
         <ul class="shop-nav__link">
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/kasukabe"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav05.webp" />
               </div>
@@ -75,7 +75,7 @@
             >
           </li>
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/fujimino"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav06.webp" />
               </div>
@@ -92,7 +92,7 @@
         <h2 class="shop-nav__title">千葉県</h2>
         <ul class="shop-nav__link">
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/narita"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav04.webp" />
               </div>
@@ -104,7 +104,7 @@
             >
           </li>
           <li class="shop-link">
-            <nuxt-link to=""
+            <nuxt-link to="/shop/kashiwa"
               ><div class="shop-link__image">
                 <img src="~assets/image/shop/top-nav08.webp" />
               </div>

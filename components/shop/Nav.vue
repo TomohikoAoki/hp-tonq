@@ -22,7 +22,6 @@
               </g></svg></span
         ></nuxt-link>
       </li>
-
       <li class="btn03">
         <nuxt-link to=""
           ><span
