@@ -2,7 +2,7 @@
   <nav class="shop-nav">
     <ul class="shop-nav__btn">
       <li class="btn01">
-        <nuxt-link to=""
+        <nuxt-link to="/menu/ground"
           ><span
             ><svg
               xmlns="http://www.w3.org/2000/svg"
