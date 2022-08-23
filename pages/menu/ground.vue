@@ -7,7 +7,6 @@
         <li @click="currentComponent = 'AkagiVue'">赤城豚</li>
         <li @click="currentComponent = 'EbiVue'">海老と一緒に</li>
         <li @click="currentComponent = 'IrodoriVue'">味わい彩々</li>
-        <li @click="currentComponent = 'SideVue'">サイド</li>
       </ul>
     </nav>
     <component :is="currentComponent"></component>

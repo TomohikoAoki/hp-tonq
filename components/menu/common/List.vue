@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .list-area {
-  padding: 10% 0;
+  padding: 5% 0 10% 0;
 }
 .list-wrap {
   border-top: 3px solid;
