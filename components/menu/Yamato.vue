@@ -28,47 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="menu">
-        <div class="menu-photo photo-left">
-          <div class="menu-photo__image">
-            <img src="~assets/image/menu/photo-yamato-roce.webp" />
-          </div>
-          <dl class="menu-photo__text">
-            <div class="text-inner">
-              <dt>
-                <img
-                  src="~assets/image/menu/name-yamato-roce.svg"
-                  alt="やまと豚ロースかつ定食"
-                />
-              </dt>
-              <dd class="menu-price">
-                <p>【120g】&yen;1,380&nbsp;(&yen;1,518)</p>
-                <p>【150g】&yen;1,660&nbsp;(&yen;1,826)</p>
-                <p>【200g】&yen;1,980&nbsp;(&yen;2,178)</p>
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div class="menu-photo photo-right">
-          <div class="menu-photo__image">
-            <img src="~assets/image/menu/photo-yamato-hire.webp" />
-          </div>
-          <dl class="menu-photo__text">
-            <div class="text-inner">
-              <dt>
-                <img
-                  src="~assets/image/menu/name-yamato-hire.svg"
-                  alt="やまと豚ヒレかつ定食"
-                />
-              </dt>
-              <dd class="menu-price">
-                <p>【120g】&yen;1,530&nbsp;(&yen;1,683)</p>
-                <p>【150g】&yen;1,980&nbsp;(&yen;2,178)</p>
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
+      <PhotoMenu :photoMenus="photoMenus" :bgColor="bgColor"></PhotoMenu>
       <ListVue :products="products"></ListVue>
     </div>
   </div>
@@ -76,37 +36,34 @@
 
 <script>
 import ListVue from "./common/List.vue";
+import PhotoMenu from "./common/PhotoMenu.vue";
 
 export default {
   components: {
     ListVue,
+    PhotoMenu,
   },
   data() {
     return {
-      products: [
-        {
-          name: "やまと豚厚切りロースかつ定食【240g】",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "やまと豚厚切りヒレかつ定食【240g】",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "やまと豚おすすめ定食",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "やまと豚カットリブ",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-      ],
+      bgColor: "antiquewhite",
+      photoMenus: null,
+      products: null
     };
   },
+  methods: {
+    fetchMenus() {
+      const Data = this.$store.getters['products/getMenuData'](1)
+      let array = []
+      this.photoMenus = Data.filter((item) => {
+        if(item.photo) return true
+        array.push(item)
+      })
+      this.products = array
+    }
+  },
+  mounted() {
+    this.fetchMenus()
+  }
 };
 </script>
 
@@ -115,40 +72,23 @@ $padding-width: 30px;
 $padding-color: #686561;
 $bg-color: antiquewhite;
 .yamato {
-  position: relative;
   background-color: $bg-color;
-  overflow: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: calc(50% + 320px);
-    padding-top: 30%;
-    background-image: url(~assets/image/menu/bg-yamato01.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: calc(50% + 320px);
-    padding-top: 30%;
-    background-image: url(~assets/image/menu/bg-yamato02.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-  }
   .main-content {
     max-width: 1360px;
     margin: 0 auto;
     padding: 50px 0;
     &__title {
       text-align: center;
+      @media screen and (max-width: 750px) {
+        filter: drop-shadow(0 0 5px $bg-color) drop-shadow(0 0 5px $bg-color)
+          drop-shadow(0 0 5px $bg-color);
+      }
       img {
         max-width: 650px;
+        @media screen and (max-width: 950px) {
+          max-width: 450px;
+          width: 80%;
+        }
       }
     }
     &__text {
@@ -156,6 +96,12 @@ $bg-color: antiquewhite;
       padding: $padding-width;
       width: 95%;
       margin: 0 auto;
+      @media screen and (max-width: 800px) {
+        max-width: 650px;
+      }
+      @media screen and (max-width: 750px) {
+        margin: 20px auto 0 auto;
+      }
       em {
         font-weight: bold;
         text-decoration: underline;
@@ -169,6 +115,9 @@ $bg-color: antiquewhite;
         top: 0;
         left: $padding-width;
         border-left: 2px solid $padding-color;
+        @media screen and (max-width: 500px) {
+          left: 3%;
+        }
       }
       //左上横線
       &::after {
@@ -179,6 +128,9 @@ $bg-color: antiquewhite;
         top: $padding-width;
         left: 0;
         border-top: 2px solid $padding-color;
+        @media screen and (max-width: 500px) {
+          top: 3%;
+        }
       }
       span {
         //右下縦線
@@ -190,6 +142,9 @@ $bg-color: antiquewhite;
           bottom: 0;
           right: $padding-width;
           border-right: 2px solid $padding-color;
+          @media screen and (max-width: 500px) {
+            right: 3%;
+          }
         }
         //右下横線
         &::after {
@@ -200,6 +155,9 @@ $bg-color: antiquewhite;
           bottom: $padding-width;
           right: 0;
           border-bottom: 2px solid $padding-color;
+          @media screen and (max-width: 500px) {
+            bottom: 3%;
+          }
         }
       }
       .text-inner {
@@ -210,11 +168,24 @@ $bg-color: antiquewhite;
         @media screen and (max-width: 1025px) {
           align-items: stretch;
         }
+        @media screen and (max-width: 950px) {
+          padding: 40px;
+        }
+        @media screen and (max-width: 800px) {
+          flex-direction: column-reverse;
+        }
+        @media screen and (max-width: 500px) {
+          padding: 5%;
+        }
         &__text {
           flex: 1;
           padding-right: 2em;
           @media screen and (max-width: 1025px) {
             flex: 0;
+          }
+          @media screen and (max-width: 800px) {
+            padding-right: 0;
+            padding-top: 1.5em;
           }
           .yamato-text {
             line-height: 1.7em;
@@ -234,10 +205,17 @@ $bg-color: antiquewhite;
               width: 100%;
               min-width: 300px;
             }
+            @media screen and (max-width: 450px) {
+              width: 100%;
+              min-width: auto;
+            }
             .yamato-award-image {
               display: table-cell;
               vertical-align: middle;
               padding: 10px 0 10px 10px;
+              @media screen and (max-width: 450px) {
+                width: 10%;
+              }
               img {
                 width: 80px;
               }
@@ -252,67 +230,22 @@ $bg-color: antiquewhite;
               @media screen and (max-width: 1050px) {
                 font-size: 1.2em;
               }
+              @media screen and (max-width: 450px) {
+                font-size: 4.3vw;
+              }
             }
           }
         }
         &__image {
           max-width: 500px;
+          text-align: center;
+          margin: 0 auto;
           img {
             width: 100%;
             height: 100%;
             @media screen and (max-width: 1025px) {
               object-fit: cover;
             }
-          }
-        }
-      }
-    }
-  }
-}
-.menu {
-  width: 100%;
-  overflow: hidden;
-  .menu-photo {
-    display: flex;
-    justify-content: center;
-
-    &.photo-left {
-      padding-left: 50px;
-      .text-inner {
-        left: -120px;
-      }
-    }
-    &.photo-right {
-      padding-right: 50px;
-      flex-direction: row-reverse;
-      .text-inner {
-        right: -120px;
-      }
-    }
-    &__image {
-      img {
-        width: 100%;
-      }
-    }
-    &__text {
-      width: 380px;
-      position: relative;
-      .text-inner {
-        position: absolute;
-        width: 100%;
-        bottom: 80px;
-        filter: drop-shadow(0 0 5px $bg-color) drop-shadow(0 0 5px $bg-color)
-          drop-shadow(0 0 5px $bg-color);
-        dt {
-        }
-        .menu-price {
-          font-size: 1.4em;
-          margin: 0.6em 0 0 0;
-          @media screen and (max-width:950px) {
-            font-size: 1.2em;
-          }
-          p {
-            padding: 0 0 0.1em 0.2em;
           }
         }
       }

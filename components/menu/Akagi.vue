@@ -8,38 +8,12 @@
         <!--装飾用span--><span
         ></span>
         <div class="text-inner">
-          <div class="text-inner__text">
-            <p class="yamato-text">
-              やまと豚は国内の指定牧場でのみ育てられた国産のブランド豚。生産だけでなく、加工、流通まで全ての工程で徹底した品質管理で美味しさはもちろんの事、食の安全も提供しています。その特徴は<em>キメが細かく柔らかく、脂身がほのかに甘く臭みもない</em>ので女性にも大人気です。
-            </p>
-          </div>
-          <div class="text-inner__image">
-            <img src="~assets/image/menu/yamato-image.jpg" />
-          </div>
+          <p class="akagi-text">
+            赤城豚は柔らかさとしっかりとした旨味が特徴。赤城の大自然の中で育った豚を最高の状態でお客様に届けるのが料理人の使命。店内でじっくり熟成させ職人が真心込めて一枚一枚揚げています。
+          </p>
         </div>
       </div>
-      <div class="menu">
-        <div class="menu-photo photo-left">
-          <div class="menu-photo__image">
-            <img src="~assets/image/menu/photo-akagi-roce.webp" />
-          </div>
-          <dl class="menu-photo__text">
-            <div class="text-inner">
-              <dt>
-                <img
-                  src="~assets/image/menu/name-akagi-roce.svg"
-                  alt="やまと豚ロースかつ定食"
-                />
-              </dt>
-              <dd class="menu-price">
-                <p>【120g】&yen;1,380&nbsp;(&yen;1,518)</p>
-                <p>【150g】&yen;1,660&nbsp;(&yen;1,826)</p>
-                <p>【200g】&yen;1,980&nbsp;(&yen;2,178)</p>
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
+      <PhotoMenu :photoMenus="photoMenus" :bgColor="bgColor"></PhotoMenu>
       <ListVue :products="products"></ListVue>
     </div>
   </div>
@@ -47,37 +21,34 @@
 
 <script>
 import ListVue from "./common/List.vue";
+import PhotoMenu from "./common/PhotoMenu.vue";
 
 export default {
   components: {
     ListVue,
+    PhotoMenu,
   },
   data() {
     return {
-      products: [
-        {
-          name: "国産豚ヒレかつ定食",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "国産豚ヒレかつ定食",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "赤城豚厚切りロースかつ定食【240g】",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-        {
-          name: "国産豚厚切りヒレかつ定食【240g】",
-          price: "2,240",
-          priceInTax: "2,240",
-        },
-      ],
+      bgColor: '#fff',
+      photoMenus: null,
+      products: null,
     };
   },
+  methods: {
+    fetchMenus() {
+      const Data = this.$store.getters['products/getMenuData'](2)
+      let array = []
+      this.photoMenus = Data.filter((item) => {
+        if(item.photo) return true
+        array.push(item)
+      })
+      this.products = array
+    }
+  },
+  mounted() {
+    this.fetchMenus()
+  }
 };
 </script>
 
@@ -86,50 +57,33 @@ $padding-width: 30px;
 $padding-color: #686561;
 $bg-color: #fff;
 .akagi {
-  position: relative;
-  background-color: $bg-color;
-  overflow: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: calc(50% + 320px);
-    padding-top: 30%;
-    background-image: url(~assets/image/menu/bg-yamato01.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: calc(50% + 320px);
-    padding-top: 30%;
-    background-image: url(~assets/image/menu/bg-yamato02.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-  }
   .main-content {
     max-width: 1360px;
     margin: 0 auto;
     padding: 50px 0;
     &__title {
       text-align: center;
+      @media screen and (max-width: 750px) {
+        filter: drop-shadow(0 0 5px $bg-color) drop-shadow(0 0 5px $bg-color)
+          drop-shadow(0 0 5px $bg-color);
+      }
       img {
         max-width: 650px;
+        @media screen and (max-width: 950px) {
+          max-width: 450px;
+          width: 80%;
+        }
       }
     }
     &__text {
       position: relative;
       padding: $padding-width;
       width: 95%;
+      max-width: 1000px;
       margin: 0 auto;
-      em {
-        font-weight: bold;
-        text-decoration: underline;
+      z-index: -1;
+      @media screen and (max-width: 750px) {
+        margin: 20px auto 0 auto;
       }
       //左上縦線
       &::before {
@@ -140,6 +94,9 @@ $bg-color: #fff;
         top: 0;
         left: $padding-width;
         border-left: 2px solid $padding-color;
+        @media screen and (max-width: 500px) {
+          left: 3%;
+        }
       }
       //左上横線
       &::after {
@@ -150,6 +107,9 @@ $bg-color: #fff;
         top: $padding-width;
         left: 0;
         border-top: 2px solid $padding-color;
+        @media screen and (max-width: 500px) {
+          top: 3%;
+        }
       }
       span {
         //右下縦線
@@ -161,6 +121,9 @@ $bg-color: #fff;
           bottom: 0;
           right: $padding-width;
           border-right: 2px solid $padding-color;
+          @media screen and (max-width: 500px) {
+            right: 3%;
+          }
         }
         //右下横線
         &::after {
@@ -171,119 +134,49 @@ $bg-color: #fff;
           bottom: $padding-width;
           right: 0;
           border-bottom: 2px solid $padding-color;
+          @media screen and (max-width: 500px) {
+            bottom: 3%;
+          }
         }
       }
       .text-inner {
-        padding: 50px;
-        display: flex;
-        align-items: center;
+        padding: 50px 50px 160px 50px;
         box-sizing: border-box;
-        @media screen and (max-width: 1025px) {
-          align-items: stretch;
+        position: relative;
+        @media screen and (max-width: 750px) {
+          padding: 6% 6% calc(20% + 20px) 6%;
         }
-        &__text {
-          flex: 1;
-          padding-right: 2em;
-          @media screen and (max-width: 1025px) {
-            flex: 0;
-          }
-          .yamato-text {
-            line-height: 1.7em;
-            font-size: 1.25em;
-            @media screen and (max-width: 1150px) {
-              font-size: 1em;
-            }
-          }
-          .yamato-award {
-            display: table;
-            background-color: #686561;
-            width: 400px;
-            margin: 20px auto 0 auto;
-            border-radius: 10px;
-            @media screen and (max-width: 1050px) {
-              max-width: 350px;
-              width: 100%;
-              min-width: 300px;
-            }
-            .yamato-award-image {
-              display: table-cell;
-              vertical-align: middle;
-              padding: 10px 0 10px 10px;
-              img {
-                width: 80px;
-              }
-            }
-            .yamato-award-text {
-              display: table-cell;
-              font-weight: bold;
-              vertical-align: middle;
-              font-size: 1.4em;
-              padding-right: 1em;
-              color: rgb(252, 234, 207);
-              @media screen and (max-width: 1050px) {
-                font-size: 1.2em;
-              }
-            }
+        &::before {
+          content: "";
+          background-image: url(~assets/image/menu/bg-akagi-text.svg);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: bottom right;
+          max-width: 600px;
+          width: 70%;
+          padding-top: 15%;
+          position: absolute;
+          bottom: 30px;
+          right: 50px;
+          z-index: 1;
+          @media screen and (max-width: 650px) {
+            width: 85%;
+            padding-top: 18%;
+            bottom: 6%;
+            right: 6%;
           }
         }
-        &__image {
-          max-width: 500px;
-          img {
+        .akagi-text {
+          line-height: 1.7em;
+          font-size: 1.25em;
+          position: relative;
+          z-index: 2;
+          width: 80%;
+          @media screen and (max-width: 750px) {
             width: 100%;
-            height: 100%;
-            @media screen and (max-width: 1025px) {
-              object-fit: cover;
-            }
           }
-        }
-      }
-    }
-  }
-}
-.menu {
-  width: 100%;
-  overflow: hidden;
-  .menu-photo {
-    display: flex;
-    justify-content: center;
-
-    &.photo-left {
-      padding-left: 50px;
-      .text-inner {
-        left: -120px;
-      }
-    }
-    &.photo-right {
-      padding-right: 50px;
-      flex-direction: row-reverse;
-      .text-inner {
-        right: -120px;
-      }
-    }
-    &__image {
-      img {
-        width: 100%;
-      }
-    }
-    &__text {
-      width: 380px;
-      position: relative;
-      .text-inner {
-        position: absolute;
-        width: 100%;
-        bottom: 80px;
-        filter: drop-shadow(0 0 5px $bg-color) drop-shadow(0 0 5px $bg-color)
-          drop-shadow(0 0 5px $bg-color);
-        dt {
-        }
-        .menu-price {
-          font-size: 1.4em;
-          margin: 0.6em 0 0 0;
-          @media screen and (max-width:950px) {
-            font-size: 1.2em;
-          }
-          p {
-            padding: 0 0 0.1em 0.2em;
+          @media screen and (max-width: 550px) {
+            font-size: 1.1em;
           }
         }
       }

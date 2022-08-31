@@ -77,6 +77,12 @@
   </footer>
 </template>
 
+<script>
+export default {
+}
+
+</script>
+
 <style lang="scss">
 .st0 {
   fill: #fff;

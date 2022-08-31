@@ -42,7 +42,7 @@
         ></nuxt-link>
       </li>
       <li class="btn02">
-        <nuxt-link to=""
+        <nuxt-link to="/menu/takeout"
           ><span
             ><svg
               xmlns="http://www.w3.org/2000/svg"
