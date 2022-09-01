@@ -11,7 +11,7 @@
           >&nbsp;&yen;{{ inTax(price.price).toLocaleString() }}
         </p>
       </dd>
-      <dd v-else class="menu__price">
+      <dd v-else class="menu__price no-option">
         <span v-if="menu.takeoutPrice"
           >&yen;{{ inTax(menu.takeoutPrice).toLocaleString() }}</span
         >
@@ -50,7 +50,27 @@ export default {
   }
   &__price {
     text-align: right;
+    width: 100%;
     font-size: 1.3em;
+    position: relative;
+    &.no-option {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 100%;
+        transform: translateY(-50%);
+        border-bottom: 1px dotted;
+      }
+      span {
+        background-color: #fff;
+        position: relative;
+        padding: 0 0 0 0.7em;
+      }
+    }
   }
   &.empty {
     visibility: hidden;
