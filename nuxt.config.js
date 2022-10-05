@@ -27,7 +27,7 @@ export default {
     css: ["~assets/css/destyle.css", "~assets/css/common.scss"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: "~/plugins/routerOption.js", ssr: false }],
+    plugins: [{ src: "~/plugins/routerOption.js", ssr: false }, '@/plugins/vee-validate'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -37,7 +37,7 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
-        'nuxt-lazy-load'
+        'nuxt-lazy-load', "@nuxtjs/axios"
     ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -58,6 +58,7 @@ export default {
                     grid: true
                 }
             }
-        }
+        },
+        transpile: ['vee-validate/dist/rules'],
     },
 };

@@ -58,7 +58,12 @@
       </section>
     </div>
     <section class="plate">
-      <h2 class="plate__title"><img src="~assets/image/menu/takeout/title-plate.svg" alt="テイクアウトオードブル"></h2>
+      <h2 class="plate__title">
+        <img
+          src="~assets/image/menu/takeout/title-plate.svg"
+          alt="テイクアウトオードブル"
+        />
+      </h2>
       <div class="o-menu photo-left">
         <div class="o-menu__image">
           <img src="~assets/image/menu/takeout/plate01.webp" />
@@ -107,7 +112,9 @@
         </div>
         <div class="o-menu__info">
           <dl class="info-inner-wrap">
-            <dt class="o-menu-name">やまと豚<span class="ib">贅沢オードブル</span></dt>
+            <dt class="o-menu-name">
+              やまと豚<span class="ib">贅沢オードブル</span>
+            </dt>
             <dd class="o-menu-price">&yen;5,400</dd>
             <dd class="o-menu-contents">
               <ul>
@@ -338,6 +345,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     max-width: 1150px;
+    width: 95%;
     margin: -40px auto 0 auto;
     position: relative;
     align-items: center;
@@ -352,6 +360,12 @@ export default {
     }
     &__image {
       position: relative;
+      @media screen and (max-width: 1100px) {
+        width: 60%;
+      }
+      img {
+        width: 100%;
+      }
     }
     &__info {
       flex: 1;
@@ -359,6 +373,7 @@ export default {
       .info-inner-wrap {
         border: 1px solid;
         max-width: 400px;
+        width: 90%;
         margin: 0 auto;
         padding: 20px;
         box-sizing: border-box;
@@ -367,11 +382,17 @@ export default {
           font-size: 2em;
           border-left: 9px solid;
           padding: 0.2em 0 0 0.3em;
+          @media screen and (max-width: 1100px) {
+            font-size: 2.5vw;
+          }
         }
         .o-menu-price {
           font-size: 1.7em;
           border-left: 9px solid;
           padding: 0 0 0.3em 0.6em;
+          @media screen and (max-width: 1100px) {
+            font-size: 2.6vw;
+          }
         }
         .o-menu-contents {
           padding: 0.4em 0 0 1em;
@@ -379,8 +400,11 @@ export default {
             li {
               display: inline-block;
               line-height: 1.2em;
+              @media screen and (max-width: 900px) {
+                font-size: 1.6vw;
+              }
               &::after {
-                content: "/",
+                content: "/";
               }
             }
           }

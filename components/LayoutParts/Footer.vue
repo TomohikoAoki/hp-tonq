@@ -40,9 +40,9 @@
       </div>
     </div>
     <div id="contact_button">
-      <a href="http://ton-q.com/contact/index.html"
+      <nuxt-link to="/contact/"
         ><i class="fa fa-phone" aria-hidden="true"></i
-        ><i class="fa fa-envelope" aria-hidden="true"></i>お問い合わせ</a
+        ><i class="fa fa-envelope" aria-hidden="true"></i>お問い合わせ</nuxt-link
       >
     </div>
     <nav id="othershop">

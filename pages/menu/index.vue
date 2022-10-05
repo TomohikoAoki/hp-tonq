@@ -111,6 +111,7 @@
     </div>
     <div class="menu-btn">
       <NaviVue></NaviVue>
+      <nuxt-link to="menu/lunch">ランチ</nuxt-link>
     </div>
     <aside class="note">
       <h2 class="note__title">注意事項</h2>
