@@ -27,7 +27,20 @@ export default {
     css: ["~assets/css/destyle.css", "~assets/css/common.scss"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: "~/plugins/routerOption.js", ssr: false }, '@/plugins/vee-validate'],
+    plugins: [
+        { src: "~/plugins/routerOption.js", ssr: false },
+        "@/plugins/vee-validate",
+        { src: "~/plugins/axios.js", mode: "client" },
+    ],
+    axios: {
+        proxy: true,
+    },
+    proxy: {
+        '/send_email/': {
+            target: 'http://localhost:8888',
+            pathRewrite: { '^/send_email/': '' }
+        },
+    },
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -35,10 +48,11 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [],
 
+    //loading component
+    loading: './components/Loading.vue',
+
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [
-        'nuxt-lazy-load', "@nuxtjs/axios"
-    ],
+    modules: ["nuxt-lazy-load", "@nuxtjs/axios"],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
@@ -47,18 +61,18 @@ export default {
             // プラグインは前もって npm か yarn で dependencies としてインストールしておきます
             plugins: {
                 // 値として false を渡すことによりプラグインを無効化します
-                'postcss-url': false,
-                'postcss-nested': {},
-                'postcss-responsive-type': {},
-                'postcss-hexrgba': {}
+                "postcss-url": false,
+                "postcss-nested": {},
+                "postcss-responsive-type": {},
+                "postcss-hexrgba": {},
             },
             preset: {
                 // postcss-preset-env 設定を変更します
                 autoprefixer: {
-                    grid: true
-                }
-            }
+                    grid: true,
+                },
+            },
         },
-        transpile: ['vee-validate/dist/rules'],
+        transpile: ["vee-validate/dist/rules"],
     },
 };

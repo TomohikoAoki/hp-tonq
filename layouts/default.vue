@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loading></Loading>
     <LayoutPartsHeader></LayoutPartsHeader>
     <main>
       <Nuxt />
@@ -9,7 +10,12 @@
 </template>
 
 <script>
+import Loading from '../components/Loading.vue'
+
 export default {
+  components: {
+    Loading
+  },
   mounted() {
     const element = document.getElementById("footer");
     const handler = (entries) => {
